@@ -73,8 +73,9 @@ public class DispatherController {
 	}
 	
 	@RequestMapping("/main")
-	public String main() {
+	public String main(HttpSession session) {
 		List<TMenu> menuList =  tMenuService.listMenuAll();
+		session.setAttribute("menuList",menuList);
 		return "main";
 	}
 	

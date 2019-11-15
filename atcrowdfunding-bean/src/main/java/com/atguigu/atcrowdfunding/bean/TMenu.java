@@ -16,6 +16,14 @@ public class TMenu {
 
     private List<TMenu> childList = new ArrayList<>();
 
+    public List<TMenu> getChildList() {
+        return childList;
+    }
+
+    public void setChildList(List<TMenu> childList) {
+        this.childList = childList;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -54,5 +62,17 @@ public class TMenu {
 
     public void setUrl(String url) {
         this.url = url == null ? null : url.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "TMenu{" +
+                "id=" + id +
+                ", pid=" + pid +
+                ", name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
+                ", url='" + url + '\'' +
+                ", childList=" + childList +
+                '}';
     }
 }

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="col-sm-3 col-md-2 sidebar">
 	<div class="tree">
 		<ul style="padding-left:0px;" class="list-group">
+
 			<li class="list-group-item tree-closed">
 				<a href="main.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a>
 			</li>
