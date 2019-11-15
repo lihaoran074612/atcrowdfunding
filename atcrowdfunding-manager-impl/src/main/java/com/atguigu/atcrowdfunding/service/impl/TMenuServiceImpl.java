@@ -34,7 +34,7 @@ public class TMenuServiceImpl implements TMenuService {
                 cache.put(tMenu.getId(),tMenu);
             }
         }
-        parentList.forEach(tMenu -> {
+        tMenus.forEach(tMenu -> {
             if(tMenu.getPid() != 0){
                 cache.get(tMenu.getPid()).getChildList().add(tMenu);
             }
