@@ -1,10 +1,13 @@
 package com.atguigu.atcrowdfunding.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.atguigu.atcrowdfunding.bean.TMenu;
+import com.atguigu.atcrowdfunding.service.TMenuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,9 @@ public class DispatherController {
 	
 	@Autowired
 	TAdminServie adminService;
+
+	@Autowired
+	TMenuService tMenuService;
 	
 	
 	@RequestMapping("/index")
@@ -68,6 +74,7 @@ public class DispatherController {
 	
 	@RequestMapping("/main")
 	public String main() {
+		List<TMenu> menuList =  tMenuService.listMenuAll();
 		return "main";
 	}
 	

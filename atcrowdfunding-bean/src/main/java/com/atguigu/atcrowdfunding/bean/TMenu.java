@@ -1,5 +1,8 @@
 package com.atguigu.atcrowdfunding.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TMenu {
     private Integer id;
 
@@ -10,6 +13,8 @@ public class TMenu {
     private String icon;
 
     private String url;
+
+    private List<TMenu> childList = new ArrayList<>();
 
     public Integer getId() {
         return id;
