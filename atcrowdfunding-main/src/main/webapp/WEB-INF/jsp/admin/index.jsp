@@ -89,15 +89,15 @@
                                                 <li class="disabled"><a href="#">上一页</a></li>
                                             </c:if>
                                             <c:if test="${!page.isFirstPage}">
-                                                <li><a href="${PATH}/${admin/inded}?pageNum=${page.pageNum-1}">上一页</a></li>
+                                                <li><a href="${PATH}/admin/index?pageNum=${page.pageNum-1}">上一页</a></li>
                                             </c:if>
 
                                             <c:forEach items="${page.navigatepageNums}" var="number">
                                                 <c:if test="${number == page.pageNum}">
-                                                    <li class="active"><a href="${PATH}/${admin/inded}?pageNum=${number}">${number} <span class="sr-only">(current)</span></a></li>
+                                                    <li class="active"><a href="${PATH}/admin/index?pageNum=${number}">${number} <span class="sr-only">(current)</span></a></li>
                                                 </c:if>
                                                 <c:if test="${number != page.pageNum}">
-                                                    <li><a href="${PATH}/${admin/inded}?pageNum=${number}">${number}</a></li>
+                                                    <li><a href="${PATH}/admin/index?pageNum=${number}">${number}</a></li>
                                                 </c:if>
                                             </c:forEach>
 
@@ -105,7 +105,7 @@
                                                 <li class="disabled"><a href="#">下一页</a></li>
                                             </c:if>
                                             <c:if test="${!page.isLastPage}">
-                                                <li><a href="${PATH}/${admin/inded}?pageNum=${page.pageNum+1}">下一页</a></li>
+                                                <li><a href="${PATH}/admin/index?pageNum=${page.pageNum+1}">下一页</a></li>
                                             </c:if>
                                         </ul>
                                     </td>
