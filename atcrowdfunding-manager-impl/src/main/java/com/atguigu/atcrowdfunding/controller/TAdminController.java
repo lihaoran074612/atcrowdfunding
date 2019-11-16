@@ -20,7 +20,7 @@ public class TAdminController {
 
     @RequestMapping("/admin/index")
     public String index(@RequestParam(value = "pageNum",required = false,defaultValue = "1") int pageNum,
-                        @RequestParam(value = "pageSize",required = false,defaultValue = "1") int pageSize,
+                        @RequestParam(value = "pageSize",required = false,defaultValue = "10") int pageSize,
                         Model model){
         PageHelper.startPage(pageNum,pageSize);
         Map<String,Object> map = new HashMap<>();

@@ -66,9 +66,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${page.list}" var="admin">
+                                <c:forEach items="${page.list}" var="admin" varStatus="status">
                                     <tr>
-                                    <td>1</td>
+                                    <td>${status.count}</td>
                                     <td><input type="checkbox"></td>
                                     <td>${admin.loginacct}</td>
                                     <td>${admin.username}</td>
