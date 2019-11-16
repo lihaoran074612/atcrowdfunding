@@ -82,20 +82,34 @@
                                 </c:forEach>
                             </tbody>
                             <tfoot>
-                            <tr >
-                                <td colspan="6" align="center">
-                                    <ul class="pagination">
-                                        <li class="disabled"><a href="#">上一页</a></li>
-                                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">下一页</a></li>
-                                    </ul>
-                                </td>
-                            </tr>
+                                <tr >
+                                    <td colspan="6" align="center">
+                                        <ul class="pagination">
+                                            <c:if test="${page.isFirstPage}">
+                                                <li class="disabled"><a href="#">上一页</a></li>
+                                            </c:if>
+                                            <c:if test="${!page.isFirstPage}">
+                                                <li><a href="${PATH}/${admin/inded}?pageNum=${page.pageNum-1}">上一页</a></li>
+                                            </c:if>
 
+                                            <c:forEach items="${page.navigatepageNums}" var="number">
+                                                <c:if test="${number == page.pageNum}">
+                                                    <li class="active"><a href="${PATH}/${admin/inded}?pageNum=${number}">${number} <span class="sr-only">(current)</span></a></li>
+                                                </c:if>
+                                                <c:if test="${number != page.pageNum}">
+                                                    <li><a href="${PATH}/${admin/inded}?pageNum=${number}">${number}</a></li>
+                                                </c:if>
+                                            </c:forEach>
+
+                                            <c:if test="${page.isLastPage}">
+                                                <li class="disabled"><a href="#">下一页</a></li>
+                                            </c:if>
+                                            <c:if test="${!page.isLastPage}">
+                                                <li><a href="${PATH}/${admin/inded}?pageNum=${page.pageNum+1}">下一页</a></li>
+                                            </c:if>
+                                        </ul>
+                                    </td>
+                                </tr>
                             </tfoot>
                         </table>
                     </div>
