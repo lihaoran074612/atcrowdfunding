@@ -9,5 +9,5 @@ public interface TAdminServie {
 
 	TAdmin getTAdminByLogin(Map<String, String> paramMap);
 
-    PageInfo<TAdmin> listAdminPage();
+    PageInfo<TAdmin> listAdminPage(Map<String,Object> map);
 }

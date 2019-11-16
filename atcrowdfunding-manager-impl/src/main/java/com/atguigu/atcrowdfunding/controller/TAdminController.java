@@ -24,7 +24,7 @@ public class TAdminController {
                         Model model){
         PageHelper.startPage(pageNum,pageSize);
         Map<String,Object> map = new HashMap<>();
-        PageInfo<TAdmin> pageInfo = adminServie.listAdminPage();
+        PageInfo<TAdmin> pageInfo = adminServie.listAdminPage(map);
         model.addAttribute("page",pageInfo);
         return "admin/index";
     }
