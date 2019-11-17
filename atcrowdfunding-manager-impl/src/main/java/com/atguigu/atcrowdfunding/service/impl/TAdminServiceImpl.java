@@ -70,4 +70,9 @@ public class TAdminServiceImpl implements TAdminServie {
 		TAdmin admin = adminMapper.selectByPrimaryKey(id);
 		return admin;
 	}
+
+	@Override
+	public void updateTAdmin(TAdmin admin) {
+		adminMapper.updateByPrimaryKeySelective(admin);
+	}
 }

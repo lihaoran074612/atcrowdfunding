@@ -47,4 +47,10 @@ public class TAdminController {
         return "redirect:/admin/index?pageNum="+Integer.MAX_VALUE;
     }
 
+    @RequestMapping("admin/doUpdate")
+    public String doUpdate(TAdmin admin){
+        adminServie.updateTAdmin(admin);
+        return "redirect:/admin/index?pageNum="+Integer.MAX_VALUE;
+    }
+
 }

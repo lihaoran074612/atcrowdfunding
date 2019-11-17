@@ -14,4 +14,6 @@ public interface TAdminServie {
     void saveTAdmin(TAdmin admin);
 
     TAdmin getAdminById(Integer id);
+
+    void updateTAdmin(TAdmin admin);
 }
