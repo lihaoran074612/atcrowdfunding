@@ -38,7 +38,7 @@ public class TAdminController {
     @RequestMapping("admin/doAdd")
     public String doAdd(TAdmin admin){
         adminServie.saveTAdmin(admin);
-        return "redirect:/admin/index";
+        return "redirect:/admin/index?pageNum="+Integer.MAX_VALUE;
     }
 
 }
