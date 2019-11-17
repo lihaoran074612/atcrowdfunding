@@ -53,4 +53,9 @@ public class TAdminController {
         return "redirect:/admin/index?pageNum="+Integer.MAX_VALUE;
     }
 
+    @RequestMapping("/admin/doDelete")
+    public String doDelete(TAdmin admin,int pageNum){
+        adminServie.deleteAdmin(admin);
+        return "redirect:/admin/index?pageNum="+pageNum;
+    }
 }

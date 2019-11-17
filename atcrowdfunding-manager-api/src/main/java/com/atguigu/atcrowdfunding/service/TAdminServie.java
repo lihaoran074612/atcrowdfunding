@@ -16,4 +16,6 @@ public interface TAdminServie {
     TAdmin getAdminById(Integer id);
 
     void updateTAdmin(TAdmin admin);
+
+    void deleteAdmin(TAdmin admin);
 }
