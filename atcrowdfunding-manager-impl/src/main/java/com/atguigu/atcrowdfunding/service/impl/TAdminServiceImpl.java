@@ -30,6 +30,7 @@ public class TAdminServiceImpl implements TAdminServie {
 		String loginacct = paramMap.get("loginacct");
 		
 		String userpswd = paramMap.get("userpswd");
+		String m5pswd = MD5Util.digest(userpswd);
 		
 		TAdminExample example = new TAdminExample();
 		
@@ -43,7 +44,7 @@ public class TAdminServiceImpl implements TAdminServie {
 		
 		TAdmin admin = list.get(0);
 		
-		if (!admin.getUserpswd().equals(userpswd)) {
+		if (!admin.getUserpswd().equals(m5pswd)&& !admin.getUserpswd().equals(userpswd)) {
 			throw new LoginException(Const.LOGIN_USERPSWD_ERROR);
 		}
 		
