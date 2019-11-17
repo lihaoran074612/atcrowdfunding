@@ -76,7 +76,7 @@
                                     <td>
                                         <button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>
                                         <button type="button" class="btn btn-primary btn-xs" onclick="window.location.href='${PATH}/admin/toUpdate?pageNum=${page.pageNum}&id=${admin.id}'"><i class=" glyphicon glyphicon-pencil"></i></button>
-                                        <button type="button" class="btn btn-danger btn-xs"  onclick="window.location.href='${PATH}/admin/doDelete?pageNum=${page.pageNum}&id=${admin.id}'"><i class=" glyphicon glyphicon-remove"></i></button>
+                                        <button type="button" class="btn btn-danger btn-xs"  onclick="deleteAdmin(${admin.id})"><i class=" glyphicon glyphicon-remove"></i></button>
                                     </td>
                                     </tr>
                                 </c:forEach>

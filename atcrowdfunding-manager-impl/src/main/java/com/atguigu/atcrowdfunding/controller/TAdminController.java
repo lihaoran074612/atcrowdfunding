@@ -42,15 +42,15 @@ public class TAdminController {
     }
 
     @RequestMapping("admin/doAdd")
-    public String doAdd(TAdmin admin,int pageNum){
+    public String doAdd(TAdmin admin){
         adminServie.saveTAdmin(admin);
-        return "redirect:/admin/index?pageNum="+pageNum;
+        return "redirect:/admin/index?pageNum="+Integer.MAX_VALUE;
     }
 
     @RequestMapping("admin/doUpdate")
-    public String doUpdate(TAdmin admin){
+    public String doUpdate(TAdmin admin, Integer pageNum){
         adminServie.updateTAdmin(admin);
-        return "redirect:/admin/index?pageNum="+Integer.MAX_VALUE;
+        return "redirect:/admin/index?pageNum="+pageNum;
     }
 
     @RequestMapping("/admin/doDelete")
