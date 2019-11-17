@@ -64,4 +64,10 @@ public class TAdminServiceImpl implements TAdminServie {
 		admin.setCreatetime(AppDateUtils.getFormatTime());
 		adminMapper.insertSelective(admin);
 	}
+
+	@Override
+	public TAdmin getAdminById(Integer id) {
+		TAdmin admin = adminMapper.selectByPrimaryKey(id);
+		return admin;
+	}
 }

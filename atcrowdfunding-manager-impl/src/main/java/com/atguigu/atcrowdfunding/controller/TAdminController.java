@@ -31,8 +31,14 @@ public class TAdminController {
 
     @RequestMapping("admin/toAdd")
     public String toAdd(){
-
         return "admin/add";
+    }
+
+    @RequestMapping("admin/toUpdate")
+    public String toUpdate(Integer id, Model model){
+        TAdmin admin = adminServie.getAdminById(id);
+        model.addAttribute("admin",admin);
+        return "admin/update";
     }
 
     @RequestMapping("admin/doAdd")

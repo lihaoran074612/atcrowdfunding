@@ -12,4 +12,6 @@ public interface TAdminServie {
     PageInfo<TAdmin> listAdminPage(Map<String,Object> map);
 
     void saveTAdmin(TAdmin admin);
+
+    TAdmin getAdminById(Integer id);
 }
