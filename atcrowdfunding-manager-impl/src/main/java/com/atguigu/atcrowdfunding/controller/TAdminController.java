@@ -29,5 +29,11 @@ public class TAdminController {
         return "admin/index";
     }
 
+    @RequestMapping("admin/toAdd")
+    public String toAdd(){
+
+        return "admin/toAdd";
+    }
+
 
 }
