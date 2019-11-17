@@ -76,7 +76,7 @@
                                     <td>
                                         <button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>
                                         <button type="button" class="btn btn-primary btn-xs" onclick="window.location.href='${PATH}/admin/toUpdate?pageNum=${page.pageNum}&id=${admin.id}'"><i class=" glyphicon glyphicon-pencil"></i></button>
-                                        <button type="button"  class="deleteBtnClass btn btn-danger btn-xs"  onclick="deleteAdmin(${admin.id })"><i class=" glyphicon glyphicon-remove"></i></button>
+                                        <button type="button" class="btn btn-danger btn-xs"  onclick="window.location.href='${PATH}/admin/doDelete?pageNum=${page.pageNum}&id=${admin.id}'"><i class=" glyphicon glyphicon-remove"></i></button>
                                     </td>
                                     </tr>
                                 </c:forEach>
@@ -136,7 +136,7 @@
 
     function deleteAdmin(id){
         layer.confirm("确认删除该用户吗？", {btn:["确认","取消"]}, function(){
-            window.location.href="${PATH}/admin/toDelete?pageNum=${page.pageNum}&id="+id;
+            window.location.href="${PATH}/admin/doDelete?pageNum=${page.pageNum}&id="+id;
         }, function(){
         })
     }
