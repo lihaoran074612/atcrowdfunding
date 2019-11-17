@@ -45,7 +45,8 @@
                     <form id="updateForm" role="form" action="${PATH}/admin/doUpdate" method="post">
                         <div class="form-group">
                             <label for="exampleInputPassword1">登陆账号</label>
-                            <input type="hidden" value="${admin.id}">
+                            <input type="hidden" name="pageNum" value="${param.pageNum}">
+                            <input type="hidden" name="id" value="${admin.id}">
                             <input type="text" class="form-control" id="loginacct" value="${admin.loginacct}" name="loginacct" placeholder="请输入登陆账号">
                         </div>
                         <div class="form-group">

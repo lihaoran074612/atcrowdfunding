@@ -42,9 +42,9 @@ public class TAdminController {
     }
 
     @RequestMapping("admin/doAdd")
-    public String doAdd(TAdmin admin){
+    public String doAdd(TAdmin admin,int pageNum){
         adminServie.saveTAdmin(admin);
-        return "redirect:/admin/index?pageNum="+Integer.MAX_VALUE;
+        return "redirect:/admin/index?pageNum="+pageNum;
     }
 
     @RequestMapping("admin/doUpdate")
