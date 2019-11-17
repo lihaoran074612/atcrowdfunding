@@ -1,9 +1,12 @@
 package com.atguigu.atcrowdfunding.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 
+import com.atguigu.atcrowdfunding.util.AppDateUtils;
+import com.atguigu.atcrowdfunding.util.MD5Util;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,5 +56,12 @@ public class TAdminServiceImpl implements TAdminServie {
 		List<TAdmin> admins = adminMapper.selectByExample(adminExample);
 		PageInfo<TAdmin> pageInfo = new PageInfo<>(admins,5);
 		return pageInfo;
+	}
+
+	@Override
+	public void saveTAdmin(TAdmin admin) {
+		admin.setUserpswd(MD5Util.digest(Const.DEFAULT_USERPSWD));
+		admin.setCreatetime(AppDateUtils.getFormatTime());
+		adminMapper.insertSelective(admin);
 	}
 }

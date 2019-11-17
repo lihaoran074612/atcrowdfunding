@@ -32,8 +32,13 @@ public class TAdminController {
     @RequestMapping("admin/toAdd")
     public String toAdd(){
 
-        return "admin/toAdd";
+        return "admin/add";
     }
 
+    @RequestMapping("admin/doAdd")
+    public String doAdd(TAdmin admin){
+        adminServie.saveTAdmin(admin);
+        return "redirect:/admin/index";
+    }
 
 }
