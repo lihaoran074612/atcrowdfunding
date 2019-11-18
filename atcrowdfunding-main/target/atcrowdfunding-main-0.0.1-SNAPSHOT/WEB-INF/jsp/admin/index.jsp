@@ -44,7 +44,7 @@
                         <div class="form-group has-feedback">
                             <div class="input-group">
                                 <div class="input-group-addon">查询条件</div>
-                                <input class="form-control has-success" name="condition" type="text" placeholder="请输入查询条件">
+                                <input class="form-control has-success" value="${param.condition}" name="condition" type="text" placeholder="请输入查询条件">
                             </div>
                         </div>
                         <button type="button" onclick="$('#queryForm').submit()" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询</button>
@@ -89,12 +89,12 @@
                                                 <li class="disabled"><a href="#">上一页</a></li>
                                             </c:if>
                                             <c:if test="${!page.isFirstPage}">
-                                                <li><a href="${PATH}/admin/index?pageNum=${page.pageNum-1}">上一页</a></li>
+                                                <li><a href="${PATH}/admin/index?condition=${param.condition}&pageNum=${page.pageNum-1}">上一页</a></li>
                                             </c:if>
 
                                             <c:forEach items="${page.navigatepageNums}" var="number">
                                                 <c:if test="${number == page.pageNum}">
-                                                    <li class="active"><a href="${PATH}/admin/index?pageNum=${number}">${number} <span class="sr-only">(current)</span></a></li>
+                                                    <li class="active"><a href="${PATH}/admin/index?condition=${param.condition}&pageNum=${number}">${number} <span class="sr-only">(current)</span></a></li>
                                                 </c:if>
                                                 <c:if test="${number != page.pageNum}">
                                                     <li><a href="${PATH}/admin/index?pageNum=${number}">${number}</a></li>
@@ -105,7 +105,7 @@
                                                 <li class="disabled"><a href="#">下一页</a></li>
                                             </c:if>
                                             <c:if test="${!page.isLastPage}">
-                                                <li><a href="${PATH}/admin/index?pageNum=${page.pageNum+1}">下一页</a></li>
+                                                <li><a href="${PATH}/admin/index?condition=${param.condition}&pageNum=${page.pageNum+1}">下一页</a></li>
                                             </c:if>
                                         </ul>
                                     </td>
