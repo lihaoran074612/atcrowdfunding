@@ -58,7 +58,7 @@
                             <thead>
                             <tr >
                                 <th width="30">#</th>
-                                <th width="30"><input type="checkbox"></th>
+                                <th width="30"><input id="selectAll" type="checkbox"></th>
                                 <th>账号</th>
                                 <th>名称</th>
                                 <th>邮箱地址</th>
@@ -140,6 +140,10 @@
         }, function(){
         })
     }
+
+    $("#selectAll").click(function () {
+        $("tbody input[type='checkbox']").attr("checked",true);
+    });
 </script>
 </body>
 </html>
