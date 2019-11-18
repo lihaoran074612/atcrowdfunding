@@ -70,7 +70,7 @@ public class TAdminController {
 
     @RequestMapping("/admin/doDeleteBatch")
     public String doDeleteBatch(String ids,int pageNum){
-        String[] split = ids.split(ids);
+        String[] split = ids.split(",");
         List<Integer> list = new ArrayList<>();
         for (String s:split){
             list.add(Integer.valueOf(s));

@@ -226,9 +226,9 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <delete id="batchDeleteAdmin" parameterType="arraylist">
+  <delete id="batchDeleteAdmin" parameterType="list">
     delete  from t_admin where id in
-    <foreach collection="arraylist" item="adminId" separator="," open="(" close=")">
+    <foreach collection="list" item="adminId" separator="," open="(" close=")">
         ${adminId}
     </foreach>
   </delete>
