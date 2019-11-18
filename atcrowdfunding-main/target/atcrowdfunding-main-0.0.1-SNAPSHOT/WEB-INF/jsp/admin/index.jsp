@@ -97,7 +97,7 @@
                                                     <li class="active"><a href="${PATH}/admin/index?condition=${param.condition}&pageNum=${number}">${number} <span class="sr-only">(current)</span></a></li>
                                                 </c:if>
                                                 <c:if test="${number != page.pageNum}">
-                                                    <li><a href="${PATH}/admin/index?pageNum=${number}">${number}</a></li>
+                                                    <li><a href="${PATH}/admin/index?condition=${param.condition}&pageNum=${number}">${number}</a></li>
                                                 </c:if>
                                             </c:forEach>
 
