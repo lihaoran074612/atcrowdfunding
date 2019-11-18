@@ -49,7 +49,7 @@
                         </div>
                         <button type="button" onclick="$('#queryForm').submit()" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询</button>
                     </form>
-                    <button type="button" class="btn btn-danger" style="float:right;margin-left:10px;"><i class=" glyphicon glyphicon-remove"></i> 删除</button>
+                    <button type="button" id="deleteBatchBtn" class="btn btn-danger" style="float:right;margin-left:10px;"><i class=" glyphicon glyphicon-remove"></i> 删除</button>
                     <button type="button" class="btn btn-primary" style="float:right;" onclick="window.location.href='${PATH}/admin/toAdd'"><i class="glyphicon glyphicon-plus"></i> 新增</button>
                     <br>
                     <hr style="clear:both;">
@@ -58,7 +58,7 @@
                             <thead>
                             <tr >
                                 <th width="30">#</th>
-                                <th width="30"><input type="checkbox"></th>
+                                <th width="30"><input id="selectAll" type="checkbox"></th>
                                 <th>账号</th>
                                 <th>名称</th>
                                 <th>邮箱地址</th>
@@ -69,7 +69,7 @@
                                 <c:forEach items="${page.list}" var="admin" varStatus="status">
                                     <tr>
                                     <td>${status.count}</td>
-                                    <td><input type="checkbox"></td>
+                                    <td><input adminId="${admin.id}"  type="checkbox"></td>
                                     <td>${admin.loginacct}</td>
                                     <td>${admin.username}</td>
                                     <td>${admin.email}</td>
@@ -140,6 +140,27 @@
         }, function(){
         })
     }
+
+    $("#selectAll").click(function () {
+        $("tbody input[type='checkbox']").prop("checked",this.checked);
+    });
+    
+    $("#deleteBatchBtn").click(function () {
+        var checkedBoxList = $("tbody input[type='checkbox']:checked");
+
+        if(checkedBoxList.length == 0){
+            layer.msg("请选中再删除")
+            return false;
+        }
+        var ids = '';
+        var array = new Array();
+        $.each(checkedBoxList,function (i,e) {
+            var adminId = $(e).attr("adminId");
+            array.push(adminId);
+        });
+        ids = array.join(",");
+        console.log(ids);
+    });
 </script>
 </body>
 </html>

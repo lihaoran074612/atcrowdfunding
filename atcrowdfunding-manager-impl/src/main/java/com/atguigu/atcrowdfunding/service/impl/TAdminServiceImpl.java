@@ -90,4 +90,9 @@ public class TAdminServiceImpl implements TAdminServie {
 	public void deleteAdmin(TAdmin admin) {
 		adminMapper.deleteByPrimaryKey(admin.getId());
 	}
+
+	@Override
+	public void batchDeleteAdmin(List<Integer> list) {
+		adminMapper.batchDeleteAdmin(list);
+	}
 }
