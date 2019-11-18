@@ -14,6 +14,6 @@ public class TRoleController {
     @RequestMapping("role/index")
     public String index(){
 
-        return "roel/index";
+        return "role/index";
     }
 }
