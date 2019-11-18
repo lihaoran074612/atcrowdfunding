@@ -52,8 +52,18 @@ public class TAdminServiceImpl implements TAdminServie {
 
 	@Override
 	public PageInfo<TAdmin> listAdminPage(Map<String,Object> map) {
-		TAdminExample adminExample = new TAdminExample();
-		List<TAdmin> admins = adminMapper.selectByExample(adminExample);
+		String condition = (String)map.get("condition");
+		TAdminExample example = new TAdminExample();
+		if (!"".equals(condition)){
+			example.createCriteria().andLoginacctLike("%"+condition+"%");
+			TAdminExample.Criteria criteria2 = example.createCriteria();
+			criteria2.andUsernameLike("%"+condition+"%");
+			TAdminExample.Criteria criteria3 = example.createCriteria();
+			criteria3.andEmailLike("%"+condition+"%");
+			example.or(criteria2);
+			example.or(criteria3);
+		}
+		List<TAdmin> admins = adminMapper.selectByExample(example);
 		PageInfo<TAdmin> pageInfo = new PageInfo<>(admins,5);
 		return pageInfo;
 	}

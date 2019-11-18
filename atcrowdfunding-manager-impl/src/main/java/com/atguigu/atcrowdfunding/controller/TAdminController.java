@@ -4,6 +4,8 @@ import com.atguigu.atcrowdfunding.bean.TAdmin;
 import com.atguigu.atcrowdfunding.service.TAdminServie;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,15 +17,20 @@ import java.util.Map;
 
 @Controller
 public class TAdminController {
+
+    Logger logger = LoggerFactory.getLogger(TAdminController.class);
     @Autowired
     TAdminServie adminServie;
 
     @RequestMapping("/admin/index")
     public String index(@RequestParam(value = "pageNum",required = false,defaultValue = "1") int pageNum,
                         @RequestParam(value = "pageSize",required = false,defaultValue = "5") int pageSize,
-                        Model model){
+                        Model model,
+                        @RequestParam(value = "condition",required = false,defaultValue = "") String condition){
+        logger.info(condition);
         PageHelper.startPage(pageNum,pageSize);
         Map<String,Object> map = new HashMap<>();
+        map.put("condition",condition);
         PageInfo<TAdmin> pageInfo = adminServie.listAdminPage(map);
         model.addAttribute("page",pageInfo);
         return "admin/index";
