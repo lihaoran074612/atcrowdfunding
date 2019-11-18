@@ -135,6 +135,7 @@
     });
 
     function deleteAdmin(id){
+
         layer.confirm("确认删除该用户吗？", {btn:["确认","取消"]}, function(){
             window.location.href="${PATH}/admin/doDelete?pageNum=${page.pageNum}&id="+id;
         }, function(){
@@ -159,7 +160,6 @@
             array.push(adminId);
         });
         ids = array.join(",");
-        console.log(ids);
 
         layer.confirm("确认删除这些用户吗？", {btn:["确认","取消"]}, function(){
             window.location.href="${PATH}/admin/doDeleteBatch?pageNum=${page.pageNum}&ids=" +ids;

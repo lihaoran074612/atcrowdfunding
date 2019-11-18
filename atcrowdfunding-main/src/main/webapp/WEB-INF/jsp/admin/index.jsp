@@ -8,7 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -135,6 +135,7 @@
     });
 
     function deleteAdmin(id){
+
         layer.confirm("确认删除该用户吗？", {btn:["确认","取消"]}, function(){
             window.location.href="${PATH}/admin/doDelete?pageNum=${page.pageNum}&id="+id;
         }, function(){
@@ -159,7 +160,6 @@
             array.push(adminId);
         });
         ids = array.join(",");
-        console.log(ids);
 
         layer.confirm("确认删除这些用户吗？", {btn:["确认","取消"]}, function(){
             window.location.href="${PATH}/admin/doDeleteBatch?pageNum=${page.pageNum}&ids=" +ids;
