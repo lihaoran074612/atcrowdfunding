@@ -108,6 +108,39 @@
     $("tbody .btn-success").click(function(){
         window.location.href = "assignPermission.html";
     });
+    
+    function initData() {
+        var json = {
+            pageNum:1,
+            pageSize:10
+        };
+        var index = -1;
+
+        $.ajax({
+            type:'post',
+            url:"${PATH}/role/loadData",
+            data:json,
+            beforeSend:function () {
+                index = layer.load(0,{time:3*1000});
+                return true;
+            },
+            success:function (result) {
+                console.log(result);
+                layer.close(index);
+                initShow(result);
+                initNavg(result);
+            }
+        })
+    }
+
+    function initShow(result) {
+        alert(result);
+    }
+
+    function  initNavg(result){
+        alert(result);
+    }
+
 </script>
 </body>
 </html>
