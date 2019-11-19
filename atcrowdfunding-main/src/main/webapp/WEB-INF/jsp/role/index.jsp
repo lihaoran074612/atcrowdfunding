@@ -172,7 +172,7 @@
             content+=' <td>'+e.name+'</td>';
             content+=' <td>';
             content+='     <button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>';
-            content+='     <button type="button" class="updateClass btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>';
+            content+='     <button type="button" roleId = "'+e.id+'" class="updateClass btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>';
             content+='  <button type="button" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
             content+=' </td>';
             content+='</tr>';
@@ -245,8 +245,11 @@
     //====模态框添加 结束===============================================
 
     //=======修改 开始==================================================
-        $(".updateClass").click(function() {
-            alert(update);
+        $("tbody").on('click','.updateClass',function () {
+            var roleId = $(this).attr("roleId");
+            $.get("${PATH}/role/getRoleById",{id:roleId},function (reslut) {
+                console.log(reslut);
+            });
         });
     //=======修改 结束==================================================
 </script>

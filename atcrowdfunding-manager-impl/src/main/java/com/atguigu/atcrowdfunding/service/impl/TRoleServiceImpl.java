@@ -4,7 +4,6 @@ import com.atguigu.atcrowdfunding.bean.TRole;
 import com.atguigu.atcrowdfunding.bean.TRoleExample;
 import com.atguigu.atcrowdfunding.mapper.TRoleMapper;
 import com.atguigu.atcrowdfunding.service.TRoleService;
-import com.atguigu.atcrowdfunding.util.StringUtil;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,5 +36,11 @@ public class TRoleServiceImpl implements TRoleService {
     @Override
     public void saveRole(TRole role) {
         roleMapper.insert(role);
+    }
+
+    @Override
+    public TRole getRoleById(Integer id) {
+        TRole role = roleMapper.selectByPrimaryKey(id);
+        return role;
     }
 }

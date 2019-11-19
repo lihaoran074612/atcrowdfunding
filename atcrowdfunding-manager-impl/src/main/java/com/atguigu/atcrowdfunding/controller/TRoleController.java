@@ -45,5 +45,11 @@ public class TRoleController {
         return "ok";
     }
 
+    @RequestMapping("role/getRoleById")
+    @ResponseBody
+    public TRole getRoleById(Integer id){
+        TRole role = roleService.getRoleById(id);
+        return role;
+    }
 
 }
