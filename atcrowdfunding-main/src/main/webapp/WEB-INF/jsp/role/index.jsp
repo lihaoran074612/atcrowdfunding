@@ -172,7 +172,7 @@
             content+=' <td>'+e.name+'</td>';
             content+=' <td>';
             content+='     <button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>';
-            content+='     <button type="button" class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>';
+            content+='     <button type="button" class="updateClass btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>';
             content+='  <button type="button" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
             content+=' </td>';
             content+='</tr>';
@@ -221,7 +221,7 @@
             });
         });
 
-        $("#saveBtn").click(function () {
+        $("#saveBtn").click(function(){
             var name = $("#addModal input[name='name']").val();
             $.ajax({
                type:"post",
@@ -244,6 +244,11 @@
         });
     //====模态框添加 结束===============================================
 
+    //=======修改 开始==================================================
+        $(".updateClass").click(function() {
+            alert(update);
+        });
+    //=======修改 结束==================================================
 </script>
 </body>
 </html>

@@ -21,7 +21,6 @@ public class TRoleController {
 
     @RequestMapping("role/index")
     public String index(){
-
         return "role/index";
     }
 
@@ -41,8 +40,10 @@ public class TRoleController {
 
     @RequestMapping("role/doAdd")
     @ResponseBody
-    public void doAdd(TRole role){
+    public String doAdd(TRole role){
         roleService.saveRole(role);
+        return "ok";
     }
+
 
 }
