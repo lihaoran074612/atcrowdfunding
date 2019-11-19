@@ -28,10 +28,12 @@ public class TRoleController {
     @RequestMapping("role/loadData")
     @ResponseBody
     public PageInfo<TRole> loadData(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,
-                                    @RequestParam(value ="pageSize",required = false,defaultValue = "5") Integer pageSize){
+                                    @RequestParam(value ="pageSize",required = false,defaultValue = "5") Integer pageSize,
+                                    @RequestParam(value ="condition",required = false,defaultValue = "") String condition){
 
         PageHelper.startPage(pageNum,pageSize);
         Map<String ,Object> paramMap = new HashMap<>();
+        paramMap.put("condition",condition);
         PageInfo<TRole> pageInfo = roleService.listRolePage(paramMap);
 
         return pageInfo;
