@@ -11,4 +11,8 @@ public interface TRoleService {
     void saveRole(TRole role);
 
     TRole getRoleById(Integer id);
+
+    void updateRole(TRole role);
+
+    void deleteRole(TRole role);
 }

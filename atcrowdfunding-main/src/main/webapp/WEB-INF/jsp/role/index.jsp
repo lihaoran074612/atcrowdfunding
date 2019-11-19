@@ -83,7 +83,7 @@
     </div>
 </div>
 
-<--! 添加模态框  -->
+
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -107,10 +107,38 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" id="saveBtn" class="btn btn-primary">保存</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
+        </div>
+    </div>
 </div>
 
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改角色
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="name">角色名称</label>
+                        <input type="hidden" id="id" name="id">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="请输入角色名称">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="updateBtn" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -173,7 +201,7 @@
             content+=' <td>';
             content+='     <button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>';
             content+='     <button type="button" roleId = "'+e.id+'" class="updateClass btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>';
-            content+='  <button type="button" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
+            content+='     <button type="button" roleId = "'+e.id+'" class="deleteClass btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
             content+=' </td>';
             content+='</tr>';
         });
@@ -235,6 +263,7 @@
                        layer.msg("保存成功" ,{time:1000},function(){
                            $("#addModal").modal('hide');
                            $("#addModal input[name='name']").val("");
+                           initData(1);
                        })
                    }else{
                        layer.msg("保存失败")
@@ -247,11 +276,54 @@
     //=======修改 开始==================================================
         $("tbody").on('click','.updateClass',function () {
             var roleId = $(this).attr("roleId");
-            $.get("${PATH}/role/getRoleById",{id:roleId},function (reslut) {
-                console.log(reslut);
+            $.get("${PATH}/role/getRoleById",{id:roleId},function(reslut) {
+                $("#updateModal").modal({
+                    show:true,
+                    backdrop:'static',
+                    keyboard:false
+                });
+                $("#updateModal input[name='name']").val(reslut.name);
+                $("#updateModal input[name='id']").val(reslut.id);
             });
         });
+        $("#updateBtn").click(function(){
+            var name = $("#updateModal input[name='name']").val();
+            var id = $("#updateModal input[name='id']").val();
+            $.post("${PATH}/role/doUpdate",{id:id,name:name},function(result){
+                    if ("ok" == result){
+                        layer.msg("修改成功",{time:1000},function () {
+                            $("#updateModal").modal('hide');
+                            $("#updateModal input[name='name']").val("");
+                            initData(json.pageNum);
+                        });
+                    }else{
+                        layer.msg("修改失败");
+                    }
+                }
+            );
+        })
     //=======修改 结束==================================================
+
+    //=======删除 开始==================================================
+        $("tbody").on('click','.deleteClass',function () {
+            var id = $(this).attr("roleId");
+            layer.confirm("您确定删除嘛？",{btn:['确定','取消']},function (index) {
+                $.post("${PATH}/role/doDelete",{id:id},function(result){
+                        if ("ok" == result){
+                            layer.msg("删除成功",{time:1000},function () {
+                                initData(json.pageNum);
+                            });
+                        }else{
+                            layer.msg("删除失败");
+                        }
+                    }
+                );
+                layer.close(index);
+            },function (index) {
+                layer.close(index);
+            })
+        });
+    //=======删除 结束==================================================
 </script>
 </body>
 </html>

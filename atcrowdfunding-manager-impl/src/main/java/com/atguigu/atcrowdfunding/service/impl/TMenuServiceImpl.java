@@ -42,4 +42,9 @@ public class TMenuServiceImpl implements TMenuService {
         logger.info(parentList.toString());
         return parentList;
     }
+
+    @Override
+    public List<TMenu> listMenuAllTree() {
+        return tMenuMapper.selectByExample(null);
+    }
 }

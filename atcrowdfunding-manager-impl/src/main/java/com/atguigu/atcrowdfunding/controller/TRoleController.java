@@ -45,6 +45,20 @@ public class TRoleController {
         return "ok";
     }
 
+    @RequestMapping("role/doUpdate")
+    @ResponseBody
+    public String doUpdate(TRole role){
+        roleService.updateRole(role);
+        return "ok";
+    }
+
+    @RequestMapping("role/doDelete")
+    @ResponseBody
+    public String doDelete(TRole role){
+        roleService.deleteRole(role);
+        return "ok";
+    }
+
     @RequestMapping("role/getRoleById")
     @ResponseBody
     public TRole getRoleById(Integer id){
