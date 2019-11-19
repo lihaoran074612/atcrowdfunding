@@ -105,7 +105,7 @@
 
     var json = {
         pageNum:1,
-        pageSize:2,
+        pageSize:2
     };
 
     
@@ -123,7 +123,6 @@
                 return true;
             },
             success:function (result) {
-                console.log(result);
                 layer.close(index);
                 initShow(result);
                 initNavg(result);
@@ -174,9 +173,10 @@
         }
     }
     
-    $("#queryBtn").click(function () {
-        var condition = $("#condition").valueOf();
-        json.conditon = condition;
+    $("#queryBtn").click(function(){
+        var condition = $("#condition").val();
+        console.log(condition);
+        json.condition = condition;
         initData(1);
     });
 
