@@ -33,4 +33,9 @@ public class TRoleServiceImpl implements TRoleService {
         PageInfo<TRole> pageInfo = new PageInfo<>(roles,5);
         return pageInfo;
     }
+
+    @Override
+    public void saveRole(TRole role) {
+        roleMapper.insert(role);
+    }
 }

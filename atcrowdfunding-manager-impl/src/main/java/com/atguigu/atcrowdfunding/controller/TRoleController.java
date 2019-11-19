@@ -38,4 +38,11 @@ public class TRoleController {
 
         return pageInfo;
     }
+
+    @RequestMapping("role/doAdd")
+    @ResponseBody
+    public void doAdd(TRole role){
+        roleService.saveRole(role);
+    }
+
 }
