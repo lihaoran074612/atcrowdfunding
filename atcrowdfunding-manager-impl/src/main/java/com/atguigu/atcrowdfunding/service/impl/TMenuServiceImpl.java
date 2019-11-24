@@ -52,4 +52,19 @@ public class TMenuServiceImpl implements TMenuService {
     public void saveTMenu(TMenu menu) {
         tMenuMapper.insertSelective(menu);
     }
+
+    @Override
+    public TMenu getMenuById(Integer id) {
+        return tMenuMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void doUpdate(TMenu menu) {
+        tMenuMapper.updateByPrimaryKeySelective(menu);
+    }
+
+    @Override
+    public void doDelete(int id) {
+        tMenuMapper.deleteByPrimaryKey(id);
+    }
 }

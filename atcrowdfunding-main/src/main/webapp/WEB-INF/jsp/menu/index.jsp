@@ -60,6 +60,37 @@
         </div>
     </div>
 
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times;</button>
+                <h4 class="modal-title" id="myModalLabel"> 修改菜单 </h4>
+                </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="name">菜单名称</label>
+                        <input type="hidden" name="id">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="请输入菜单名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="url">菜单url</label>
+                        <input type="text" class="form-control" id="url" name="url" placeholder="请输入菜单URL">
+                    </div>
+                    <div class="form-group">
+                        <label for="icon">菜单图标</label>
+                        <input type="text" class="form-control" id="icon" name="icon" placeholder="请输入菜单图标">
+                    </div>
+                </form>
+            </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="updateBtn" class="btn btn-primary">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 <jsp:include page="/WEB-INF/jsp/common/top.jsp"></jsp:include>
@@ -124,7 +155,7 @@
                         s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="addBtn('+treeNode.id+')" >&nbsp;&nbsp;<i class="fa fa-fw fa-plus rbg "></i></a>';
                     } else if ( treeNode.level == 2 ) {
                         s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;"  onclick="updateBtn('+treeNode.id+')" title="修改权限信息">&nbsp;&nbsp;<i class="fa fa-fw fa-edit rbg "></i></a>';
-                        s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick= "deletBtn('+treeNode.id+')">&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
+                        s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick= "deleteBtn('+treeNode.id+')">&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
                 }
 
                     s += '</span>';
@@ -198,13 +229,72 @@
     //================修改开始===============================
 
     function updateBtn(id) {
-
+        $.get("${PATH}/menu/getMenuById",{id:id},function(reslut) {
+            $("#updateModal").modal({
+                show:true,
+                backdrop:'static',
+                keyboard:false
+            });
+            $("#updateModal input[name='name']").val(reslut.name);
+            $("#updateModal input[name='id']").val(reslut.id);
+            $("#updateModal input[name='icon']").val(reslut.icon);
+            $("#updateModal input[name='url']").val(reslut.url);
+        });
     }
+
+    $("#updateBtn").click(function() {
+        var id = $("#updateModal input[name='id']").val();
+        var name = $("#updateModal input[name='name']").val();
+        var url = $("#updateModal input[name='url']").val();
+        var icon = $("#updateModal input[name='icon']").val();
+        $.ajax({
+            type:"post",
+            url:"${PATH}/menu/doUpdate",
+            data : {
+                name:name,
+                id: id,
+                url:url,
+                icon:icon
+            },
+            beforeSend:function() {
+                return true;
+            },
+            success:function(result) {
+                if('ok' == result){
+                    layer.msg("修改成功" ,{time:1000},function(){
+                        $("#updateModal").modal('hide');
+                        $("#updateModal input[name='name']").val("");
+                        $("#updateModal input[name='icon']").val("");
+                        $("#updateModal input[name='url']").val("");
+                        $("#updateModal input[name='pid']").val("");
+                        initTree();
+                    })
+                }else{
+                    layer.msg("修改失败")
+                }
+            }
+        });
+    });
+
     //================修改结束===============================
 
     //================删除开始===============================
     function deleteBtn(id) {
-
+        layer.confirm("您确定删除嘛？",{btn:['确定','取消']},function (index) {
+            $.post("${PATH}/menu/doDelete",{id:id},function(result){
+                if ("ok" == result){
+                layer.msg("删除成功",{time:1000},function () {
+                    initTree();
+                });
+                }else{
+                    layer.msg("删除失败");
+                }
+            }
+            );
+            layer.close(index);
+        },function (index) {
+        layer.close(index);
+        })
     }
     //================删除结束===============================
 

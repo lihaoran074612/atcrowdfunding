@@ -33,5 +33,26 @@ public class TMenuController {
         return list;
     }
 
+    @RequestMapping("menu/getMenuById")
+    @ResponseBody
+    public TMenu getMenuById(Integer id){
+        TMenu menu = menuService.getMenuById(id);
+        return menu;
+    }
+
+
+    @RequestMapping("menu/doUpdate")
+    @ResponseBody
+    public String doUpdate(TMenu menu){
+        menuService.doUpdate(menu);
+        return "ok";
+    }
+
+    @RequestMapping("menu/doDelete")
+    @ResponseBody
+    public String doDelete(int id){
+        menuService.doDelete(id);
+        return "ok";
+    }
 
 }
