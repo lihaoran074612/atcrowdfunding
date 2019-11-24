@@ -78,4 +78,10 @@ public class TAdminController {
         adminServie.batchDeleteAdmin(list);
         return "redirect:/admin/index?pageNum="+pageNum;
     }
+
+    @RequestMapping("/admin/toAssign")
+    public String toAssign(String id){
+
+        return "admin/assignRole";
+    }
 }
