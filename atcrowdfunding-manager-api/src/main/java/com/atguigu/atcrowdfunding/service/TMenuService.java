@@ -8,4 +8,6 @@ public interface TMenuService {
     List<TMenu> listMenuAll();
 
     List<TMenu> listMenuAllTree();
+
+    void saveTMenu(TMenu menu);
 }

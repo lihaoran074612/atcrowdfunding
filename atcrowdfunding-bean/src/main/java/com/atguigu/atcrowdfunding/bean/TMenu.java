@@ -14,14 +14,14 @@ public class TMenu {
 
     private String url;
 
-    private List<TMenu> childList = new ArrayList<>();
+    private List<TMenu> children = new ArrayList<>();
 
-    public List<TMenu> getChildList() {
-        return childList;
+    public List<TMenu> getChildren() {
+        return children;
     }
 
-    public void setChildList(List<TMenu> childList) {
-        this.childList = childList;
+    public void setChildren(List<TMenu> children) {
+        this.children = children;
     }
 
     public Integer getId() {
@@ -72,7 +72,7 @@ public class TMenu {
                 ", name='" + name + '\'' +
                 ", icon='" + icon + '\'' +
                 ", url='" + url + '\'' +
-                ", childList=" + childList +
+                ", children=" + children +
                 '}';
     }
 }

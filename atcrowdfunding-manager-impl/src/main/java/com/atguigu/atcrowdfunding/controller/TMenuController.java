@@ -19,6 +19,13 @@ public class TMenuController {
         return "menu/index";
     }
 
+    @RequestMapping("/menu/doAdd")
+    @ResponseBody
+    public String doAdd(TMenu menu){
+        menuService.saveTMenu(menu);
+        return "ok";
+    }
+
     @RequestMapping("/menu/loadTree")
     @ResponseBody
     public List<TMenu> loadTree(){

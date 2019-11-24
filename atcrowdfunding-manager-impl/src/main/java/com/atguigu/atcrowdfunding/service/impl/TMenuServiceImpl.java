@@ -36,7 +36,7 @@ public class TMenuServiceImpl implements TMenuService {
         }
         tMenus.forEach(tMenu -> {
             if(tMenu.getPid() != 0){
-                cache.get(tMenu.getPid()).getChildList().add(tMenu);
+                cache.get(tMenu.getPid()).getChildren().add(tMenu);
             }
         });
         logger.info(parentList.toString());
@@ -46,5 +46,10 @@ public class TMenuServiceImpl implements TMenuService {
     @Override
     public List<TMenu> listMenuAllTree() {
         return tMenuMapper.selectByExample(null);
+    }
+
+    @Override
+    public void saveTMenu(TMenu menu) {
+        tMenuMapper.insertSelective(menu);
     }
 }
