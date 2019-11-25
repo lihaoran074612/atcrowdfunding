@@ -2,6 +2,7 @@ package com.atguigu.atcrowdfunding.service.impl;
 
 import com.atguigu.atcrowdfunding.bean.TRole;
 import com.atguigu.atcrowdfunding.bean.TRoleExample;
+import com.atguigu.atcrowdfunding.mapper.TAdminRoleMapper;
 import com.atguigu.atcrowdfunding.mapper.TRoleMapper;
 import com.atguigu.atcrowdfunding.service.TRoleService;
 import com.github.pagehelper.PageInfo;
@@ -16,6 +17,8 @@ import java.util.Map;
 public class TRoleServiceImpl implements TRoleService {
     @Autowired
     TRoleMapper roleMapper;
+    @Autowired
+    TAdminRoleMapper adminRoleMapper;
 
     @Override
     public PageInfo<TRole> listRolePage(Map<String, Object> paramMap) {
@@ -52,5 +55,15 @@ public class TRoleServiceImpl implements TRoleService {
     @Override
     public void deleteRole(TRole role) {
         roleMapper.deleteByPrimaryKey(role.getId());
+    }
+
+    @Override
+    public List<TRole> listAllRole() {
+        return roleMapper.selectByExample(null);
+    }
+
+    @Override
+    public List<Integer> getRoleByAdminId(String id) {
+        return adminRoleMapper.getRoleByAdminId(id);
     }
 }

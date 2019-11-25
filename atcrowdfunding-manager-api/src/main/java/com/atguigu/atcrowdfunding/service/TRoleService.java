@@ -3,6 +3,7 @@ package com.atguigu.atcrowdfunding.service;
 import com.atguigu.atcrowdfunding.bean.TRole;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
 import java.util.Map;
 
 public interface TRoleService {
@@ -15,4 +16,8 @@ public interface TRoleService {
     void updateRole(TRole role);
 
     void deleteRole(TRole role);
+
+    List<TRole> listAllRole();
+
+    List<Integer> getRoleByAdminId(String id);
 }

@@ -28,4 +28,5 @@ public interface TRoleMapper {
 
     int updateByPrimaryKey(TRole record);
 
+
 }

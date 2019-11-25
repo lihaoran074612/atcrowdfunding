@@ -1,7 +1,9 @@
 package com.atguigu.atcrowdfunding.controller;
 
 import com.atguigu.atcrowdfunding.bean.TAdmin;
+import com.atguigu.atcrowdfunding.bean.TRole;
 import com.atguigu.atcrowdfunding.service.TAdminServie;
+import com.atguigu.atcrowdfunding.service.TRoleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -23,6 +25,9 @@ public class TAdminController {
     Logger logger = LoggerFactory.getLogger(TAdminController.class);
     @Autowired
     TAdminServie adminServie;
+
+    @Autowired
+    TRoleService roleService;
 
     @RequestMapping("/admin/index")
     public String index(@RequestParam(value = "pageNum",required = false,defaultValue = "1") int pageNum,
@@ -80,8 +85,30 @@ public class TAdminController {
     }
 
     @RequestMapping("/admin/toAssign")
-    public String toAssign(String id){
+    public String toAssign(String id, Model model){
 
+        //1.查询所有角色
+        List<TRole> roleList =  roleService.listAllRole();
+
+        //2.根据用户id查询已经拥有的角色id
+        List<Integer> roleIdList = roleService.getRoleByAdminId(id);
+
+        //已经分配的角色
+        List<TRole> assignRoles = new ArrayList<>();
+        //未分配的角色
+        List<TRole> unAssignRoles = new ArrayList<>();
+
+        model.addAttribute("assignRoles",assignRoles);
+        model.addAttribute("unAssignRoles",unAssignRoles);
+
+        //3.将所有角色划分，
+        roleList.stream().forEach((role) -> {
+            if (roleIdList.contains(role.getId())){
+                assignRoles.add(role);
+            }else {
+                unAssignRoles.add(role);
+            }
+        });
         return "admin/assignRole";
     }
 }
