@@ -30,4 +30,6 @@ public class TRolePermission {
     public void setPermissionid(Integer permissionid) {
         this.permissionid = permissionid;
     }
+
+
 }
