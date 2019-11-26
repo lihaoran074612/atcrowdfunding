@@ -66,4 +66,14 @@ public class TRoleServiceImpl implements TRoleService {
     public List<Integer> getRoleByAdminId(String id) {
         return adminRoleMapper.getRoleByAdminId(id);
     }
+
+    @Override
+    public void saveAdminAndRoleRelationship(Integer[] roleId, int adminId) {
+        adminRoleMapper.saveAdminAndRoleRelationship(roleId,adminId);
+    }
+
+    @Override
+    public void deleteAdminAndRoleRelationship(Integer[] roleId, int adminId) {
+        adminRoleMapper.deleteAdminAndRoleRelationship(roleId,adminId);
+    }
 }

@@ -36,7 +36,7 @@
                     <form role="form" class="form-inline">
                         <div class="form-group">
                             <label for="exampleInputPassword1">未分配角色列表</label><br>
-                            <select class="form-control" multiple size="10" style="width:100px;overflow-y:auto;">
+                            <select id="leftRoleList" class="form-control" multiple size="10" style="width:100px;overflow-y:auto;">
                                 <c:forEach items="${unAssignRoles}" var="role">
                                     <option value="${role.id}">${role.name}</option>
                                 </c:forEach>
@@ -44,14 +44,14 @@
                         </div>
                         <div class="form-group">
                             <ul>
-                                <li class="btn btn-default glyphicon glyphicon-chevron-right"></li>
+                                <li id = "leftToRightBtn" class="btn btn-default glyphicon glyphicon-chevron-right"></li>
                                 <br>
-                                <li class="btn btn-default glyphicon glyphicon-chevron-left" style="margin-top:20px;"></li>
+                                <li id="rightToLeftBtn" class="btn btn-default glyphicon glyphicon-chevron-left" style="margin-top:20px;"></li>
                             </ul>
                         </div>
                         <div class="form-group" style="margin-left:40px;">
                             <label for="exampleInputPassword1">已分配角色列表</label><br>
-                            <select class="form-control" multiple size="10" style="width:100px;overflow-y:auto;">
+                            <select id="rightRoleList" class="form-control" multiple size="10" style="width:100px;overflow-y:auto;">
                                 <c:forEach items="${assignRoles}" var="role">
                                     <option value="${role.id}">${role.name}</option>
                                 </c:forEach>
@@ -103,6 +103,72 @@
             }
         });
     });
+
+    //分配角色
+    $("#leftToRightBtn").click(function () {
+        var leftRoleSelectedList = $("#leftRoleList option:selected");
+
+        if(leftRoleSelectedList.length == 0){
+            layer.msg("请选择角色再进行分配",{icon:5,time:2000});
+            return false;
+        }
+        var str = '';
+        $.each(leftRoleSelectedList,function(i,e){
+            var roleId = e.value;
+            str+="roleId="+roleId+"&";
+        });
+
+        str+="adminId=${param.id}";
+
+        $.ajax({
+            type:'post',
+            url: "${PATH}/admin/doAssign",
+            data:str,
+            success:function(result) {
+                if(result == 'ok'){
+                    layer.msg("分配成功",{icon:6,time:1000});
+                    $("#rightRoleList").append(leftRoleSelectedList.clone());
+                    leftRoleSelectedList.remove();
+                }else {
+                    layer.msg("分配失败",{icon:5,time:1000});
+                }
+            }
+        })
+
+    });
+
+    //取消分配角色
+    $("#rightToLeftBtn").click(function () {
+        var rightRoleSelectedList = $("#rightRoleList option:selected");
+        if(rightRoleSelectedList.length == 0){
+            layer.msg("请选择角色再进行删除",{icon:5,time:2000});
+            return false;
+        }
+        var str = '';
+        $.each(rightRoleSelectedList,function(i,e){
+            var roleId = e.value;
+            str+="roleId="+roleId+"&";
+        });
+
+        str+="adminId=${param.id}";
+
+        $.ajax({
+            type:'post',
+            url: "${PATH}/admin/doUnAssign",
+            data:str,
+            success:function(result) {
+                if(result == 'ok'){
+                    layer.msg("取消分配成功",{icon:6,time:1000});
+                    $("#leftRoleList").append(rightRoleSelectedList.clone());
+                    rightRoleSelectedList.remove();
+                }else {
+                    layer.msg("取消分配失败",{icon:5,time:1000});
+                }
+            }
+        })
+
+    });
+
 </script>
 </body>
 </html>

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,6 +83,20 @@ public class TAdminController {
         }
         adminServie.batchDeleteAdmin(list);
         return "redirect:/admin/index?pageNum="+pageNum;
+    }
+
+    @RequestMapping("/admin/doAssign")
+    @ResponseBody
+    public String doAssign(Integer[] roleId,int adminId){
+        roleService.saveAdminAndRoleRelationship(roleId,adminId);
+        return "ok";
+    }
+
+    @RequestMapping("/admin/doUnAssign")
+    @ResponseBody
+    public String doUnAssign(Integer[] roleId,int adminId){
+        roleService.deleteAdminAndRoleRelationship(roleId,adminId);
+        return "ok";
     }
 
     @RequestMapping("/admin/toAssign")

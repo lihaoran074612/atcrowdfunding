@@ -181,4 +181,18 @@
   <select id="getRoleByAdminId" resultType="integer">
     select roleid from t_admin_role where adminid = #{id}
   </select>
+
+  <insert id="saveAdminAndRoleRelationship">
+    insert into t_admin_role(adminid,roleid) values
+    <foreach collection="roleIds" item="roleId"  separator=",">
+     (#{adminId},#{roleId})
+    </foreach>
+  </insert>
+
+  <delete id="deleteAdminAndRoleRelationship">
+    delete from t_admin_role where adminid=#{adminId} and roleid in
+    <foreach collection="roleIds" item="roleId" open="(" close=")" separator=",">
+      #{roleId}
+    </foreach>
+  </delete>
 </mapper>
