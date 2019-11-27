@@ -59,12 +59,12 @@ public class TMenuServiceImpl implements TMenuService {
     }
 
     @Override
-    public void doUpdate(TMenu menu) {
+    public void updateTMenu(TMenu menu) {
         tMenuMapper.updateByPrimaryKeySelective(menu);
     }
 
     @Override
-    public void doDelete(int id) {
+    public void deleteTMenu(int id) {
         tMenuMapper.deleteByPrimaryKey(id);
     }
 }

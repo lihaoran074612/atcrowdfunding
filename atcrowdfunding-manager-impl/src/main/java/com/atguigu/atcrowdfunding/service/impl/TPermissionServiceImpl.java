@@ -38,4 +38,14 @@ public class TPermissionServiceImpl implements TPermissionService {
     public TPermission getPermissionById(Integer id) {
         return permissionMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public List<TPermission> getPermissionByMenuid(Integer mid) {
+        return null;
+    }
+
+    @Override
+    public void assignPermissionToMenu(Integer mid, List<Integer> perIdArray) {
+
+    }
 }

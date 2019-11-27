@@ -14,4 +14,8 @@ public interface TPermissionService {
     void editPermission(TPermission permission);
 
     TPermission getPermissionById(Integer id);
+
+    List<TPermission> getPermissionByMenuid(Integer mid);
+
+    void assignPermissionToMenu(Integer mid, List<Integer> perIdArray);
 }

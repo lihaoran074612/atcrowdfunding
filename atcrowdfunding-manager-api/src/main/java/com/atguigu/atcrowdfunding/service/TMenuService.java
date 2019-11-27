@@ -13,7 +13,7 @@ public interface TMenuService {
 
     TMenu getMenuById(Integer id);
 
-    void doUpdate(TMenu menu);
+    void updateTMenu(TMenu menu);
 
-    void doDelete(int id);
+    void deleteTMenu(int id);
 }
