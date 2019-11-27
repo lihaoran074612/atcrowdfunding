@@ -29,7 +29,8 @@ public class TMenuController {
     @GetMapping("/menu/menu_permission")
     public List<TPermission> getPermissionByMenuid(@RequestParam("menuid") Integer mid) {
         // 查询出当前菜单能被哪些权限（自定义标识）操作
-        return permissionService.getPermissionByMenuid(mid);
+        List<TPermission> permissionByMenuid = permissionService.getPermissionByMenuid(mid);
+        return permissionByMenuid;
     }
 
 

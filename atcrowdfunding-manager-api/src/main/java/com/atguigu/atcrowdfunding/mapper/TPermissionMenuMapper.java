@@ -27,4 +27,6 @@ public interface TPermissionMenuMapper {
     int updateByPrimaryKeySelective(TPermissionMenu record);
 
     int updateByPrimaryKey(TPermissionMenu record);
+
+    void insertBatch(@Param("menuId") Integer mid, @Param("permissionIds") List<Integer> perIdArray);
 }

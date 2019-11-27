@@ -208,4 +208,10 @@
       pid = #{pid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getPermissionByMenuid" resultType="com.atguigu.atcrowdfunding.bean.TPermission">
+    select t_permission.* from t_permission
+    left join t_permission_menu
+    on t_permission.id = t_permission_menu.permissionid
+    where t_permission_menu.menuid = #{mid}
+  </select>
 </mapper>

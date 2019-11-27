@@ -178,4 +178,7 @@
       permissionid = #{permissionid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <insert id="insertBatch" >
+
+  </insert>
 </mapper>
