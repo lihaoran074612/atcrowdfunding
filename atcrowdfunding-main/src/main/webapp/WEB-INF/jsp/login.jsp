@@ -28,14 +28,15 @@
 
 	<div class="container">
 
-		<form id="loginForm" class="form-signin" role="form" action="doLogin"
+		<form id="loginForm" class="form-signin" role="form" action="${PATH}/login"
 			method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="{_csrf.token}">
 			<h2 class="form-signin-heading">
 				<i class="glyphicon glyphicon-log-in"></i> 用户登录
 			</h2>
-			<c:if test="${not empty message}">
+			<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
 				<div class="form-group has-success has-feedback">
-					${message}
+					${SPRING_SECURITY_LAST_EXCEPTION.message}
 				</div>
 			</c:if>
 			<div class="form-group has-success has-feedback">
@@ -49,7 +50,7 @@
 				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 			</div>
 			<div class="checkbox">
-				<label> <input type="checkbox" value="remember-me">
+				<label> <input type="checkbox" name="remember-me">
 					记住我
 				</label> <br> <label> 忘记密码 </label> <label style="float: right">
 					<a href="reg.html">我要注册</a>

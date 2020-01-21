@@ -125,7 +125,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+    <select id="listRoleByAdminId" resultType="com.atguigu.atcrowdfunding.bean.TRole">
+        select t_role.* from t_role join t_admin_role
+		on t_role.id = t_admin_role.roleid
+		where t_admin_role.adminid=#{adminId}
+
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
     update t_role
     <set>
       <if test="record.id != null">
