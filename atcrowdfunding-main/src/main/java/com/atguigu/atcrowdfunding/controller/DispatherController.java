@@ -37,7 +37,7 @@ public class DispatherController {
 		return "index";
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("/toLogin")
 	public String login() {
 		log.debug("系统跳转到登陆页面");
 		return "login";
@@ -74,9 +74,26 @@ public class DispatherController {
 	
 	@RequestMapping("/main")
 	public String main(HttpSession session) {
-		List<TMenu> menuList =  tMenuService.listMenuAll();
-		session.setAttribute("menuList",menuList);
-		return "main";
+        log.debug("跳转到后台系统main页面...");
+
+        if(session==null) {
+            return "redirect:/toLogin";
+        }
+        //存放父菜单
+        List<TMenu> menuList = (List<TMenu>)session.getAttribute("menuList") ;
+
+        log.debug("menuList={}",menuList);
+
+        if(menuList==null) {
+
+            log.debug("menuList=null ===》》》》查询侧边栏 菜单树");
+
+            menuList = tMenuService.listMenuAll();
+            session.setAttribute("menuList", menuList);
+        }
+
+
+        return "main";
 	}
 	
 }

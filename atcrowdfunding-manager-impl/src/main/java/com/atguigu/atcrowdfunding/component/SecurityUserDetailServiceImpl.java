@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -63,7 +64,7 @@ public class SecurityUserDetailServiceImpl implements UserDetailsService {
 			
 			//4.构建用户所有权限集合=>(ROLE_角色+权限)
 			Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-			
+
 			for (TRole role : roleList) {
 				authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getName()));
 			}

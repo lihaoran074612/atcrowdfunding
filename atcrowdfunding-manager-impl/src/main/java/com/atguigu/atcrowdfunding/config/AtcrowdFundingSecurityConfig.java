@@ -20,19 +20,21 @@ public class AtcrowdFundingSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService);
     }
     /**
      * 1、自定义请求授权访问规则
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/static/**","/welcome.jsp").permitAll()
+        http.authorizeRequests().antMatchers("/static/**","/welcome.jsp","/toLogin").permitAll()
                 .anyRequest().authenticated();//剩下都需要认证
         // /login.jsp==POST  用户登陆请求发给Security
-        http.formLogin().loginPage("/login")
-                .usernameParameter("loginacct").passwordParameter("userpswd")
-                .defaultSuccessUrl("/main").permitAll();
+        http.formLogin().loginPage("/toLogin")
+                .usernameParameter("loginacct")
+                .passwordParameter("userpswd")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/main");
         http.csrf().disable();
         http.logout().logoutSuccessUrl("/login");
         http.rememberMe();

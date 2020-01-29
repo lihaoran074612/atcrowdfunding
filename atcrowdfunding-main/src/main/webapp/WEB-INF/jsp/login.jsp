@@ -45,7 +45,7 @@
 					class="glyphicon glyphicon-user form-control-feedback"></span>
 			</div>
 			<div class="form-group has-success has-feedback">
-				<input type="text" class="form-control" id="userpswd"
+				<input type="password" class="form-control" id="userpswd"
 					name="userpswd" placeholder="请输入登录密码" style="margin-top: 10px;">
 				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 			</div>
