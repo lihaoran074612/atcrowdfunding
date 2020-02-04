@@ -284,6 +284,8 @@
                            $("#addModal input[name='name']").val("");
                            initData(1);
                        })
+                   }else if('403' == result){
+                       layer.msg("您无权访问")
                    }else{
                        layer.msg("保存失败")
                    }
